@@ -25,6 +25,8 @@ public class computerListPage extends chromeOpen
     public static WebElement nextPagi = null;
     public static WebElement createDone = null;
     public static WebElement searchResult = null;
+    public static WebElement emptyResult = null;
+    public static WebElement emptyState = null;
 
 
     public static String titleXPath = "//h1[@class=\"fill\"]";
@@ -41,6 +43,8 @@ public class computerListPage extends chromeOpen
     public static String currPagiXPath = "//body//section//div[@id=\"pagination\"]//li[2]";
     public static String nextPagiXPath = "//body//section//div[@id=\"pagination\"]//li[3]";
     public static String createDoneXPath = "//body//div[@class=\"alert-message warning\"]";
+    public static String emptyResultXPath = "//body//section//h1";
+    public static String emptyStateXPath = "//body//section//div[@class=\"well\"]";
 
 
     public static boolean copyCrt = true;
@@ -58,6 +62,8 @@ public class computerListPage extends chromeOpen
     public static boolean currPagiPres = true;
     public static boolean nextPagiPres = true;
     public static boolean createDonePres = true;
+    public static boolean emptyResultPres = true;
+    public static boolean emptyStatePres = true;
 
 
 
@@ -358,6 +364,8 @@ public class computerListPage extends chromeOpen
             Thread.sleep(1000);
             computerSearchInput.click();
             Thread.sleep(1000);
+            computerSearchInput.clear();
+            Thread.sleep(1000);
             computerSearchInput.sendKeys(keyboard);
             Thread.sleep(1000);
             computerSearchSubmit.click();
@@ -375,6 +383,120 @@ public class computerListPage extends chromeOpen
         else
         {
             System.out.println("One or more element not found cannot perform Search Computer Test");
+        }
+
+
+
+    }
+
+    public static void searchEmptyTest (String keyboard) throws InterruptedException
+    {
+        copyCrt = true;
+        try{
+            driver.findElement(By.xpath(searchBoxXPath));
+            searchBoxPres = true;
+
+        }
+        catch (NoSuchElementException e)
+        {
+            searchBoxPres = false;
+            System.out.println("Search Box element not found");
+        }
+        try{
+            driver.findElement(By.xpath(searchBtnXPath));
+            searchBtnPres = true;
+
+        }
+        catch (NoSuchElementException e)
+        {
+            searchBtnPres = false;
+            System.out.println("Search Button element not found");
+        }
+
+        if
+        (
+                searchBoxPres == true &
+                        searchBtnPres == true
+        )
+        {
+            computerSearchInput = driver.findElement(By.id("searchbox"));
+            computerSearchSubmit = driver.findElement(By.id("searchsubmit"));
+
+            Thread.sleep(1000);
+            computerSearchInput.click();
+            Thread.sleep(1000);
+            computerSearchInput.sendKeys(keyboard);
+            Thread.sleep(1000);
+            computerSearchSubmit.click();
+
+            try
+            {
+                driver.findElement(By.xpath(emptyResultXPath));
+                emptyResultPres = true;
+
+            }
+            catch (NoSuchElementException e)
+            {
+                emptyResultPres = false;
+                System.out.println("Empty Result element not found");
+            }
+
+            try
+            {
+                driver.findElement(By.xpath(emptyStateXPath));
+                emptyStatePres = true;
+
+            }
+            catch (NoSuchElementException e)
+            {
+                emptyStatePres = false;
+                System.out.println("Empty State element not found");
+            }
+            if
+            (
+                emptyResultPres == true &
+                emptyStatePres == true
+            )
+            {
+                emptyResult = driver.findElement(By.xpath(emptyResultXPath));
+                emptyState = driver.findElement(By.xpath(emptyStateXPath));
+
+                if (emptyResult.getText().equals("No computers found"))
+                {
+
+                }
+                else
+                {
+                    copyCrt = false;
+                    System.out.println("Empty Search result not shown correctly");
+                }
+                if (emptyState.getText().equals("Nothing to display"))
+                {
+
+                }
+                else
+                {
+                    copyCrt = false;
+                    System.out.println("Empty state result not shown correctly");
+                }
+
+
+                if (copyCrt == true) {
+                    System.out.println("Empty computer result shown correctly");
+                } else {
+                    System.out.println("Empty computer result not shown correctly");
+                }
+
+            }
+            else
+            {
+                System.out.println("One or more element not found cannot perform Empty Search Computer Test");
+            }
+
+        }
+        else
+        {
+            System.out.println("One or more element not found cannot perform Empty Search Computer Test");
         }
 
 

@@ -20,5 +20,9 @@ public class editTest
         updateComputerPage.updCompTest(uCompName);
         computerListPage.checkUpdateNotif(uCompName);
     }
+
+    public static void checkEmptyResult (String randomName) throws InterruptedException {
+        computerListPage.searchEmptyTest(randomName);
+    }
 }
 

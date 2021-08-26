@@ -7,6 +7,7 @@ public class endToEndTest
 //        computerListPage.searchTest("test");
         copyTest.computerListAndAddComputerCopyTest();
         createTest.createTestPositive("TestQA123789");
+        editTest.checkEmptyResult("ghkgjkgbv464");
         editTest.openEditPagePositive("TestQA123789");
         copyTest.updateComputerCopyTest();
         editTest.editPageValidationTest();
