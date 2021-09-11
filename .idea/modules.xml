@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sinarmasQaSelenium.iml" filepath="$PROJECT_DIR$/sinarmasQaSelenium.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ulaQATest.iml" filepath="$PROJECT_DIR$/ulaQATest.iml" />
     </modules>
   </component>
 </project>

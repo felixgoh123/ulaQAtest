@@ -1,5 +1,3 @@
-# sinarmasQaSelenium
-
 Hi,
 
 I recommend to download intellij first since I created this on intellij.
